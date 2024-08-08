@@ -11,7 +11,7 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 {
 	if (DeadActor == Tank)
 	{
-		UE_LOG(LogTemp, Warning, TEXT("Tanqueee muertooooo"));
+		UE_LOG(LogTemp, Warning, TEXT("Tanqueee muertoooooo"));
 		Tank->HandleDestruction();
 		/*auto tankplayercontroller = Tank->GetTankPlayerController();*/
 		if (ToonTanksPlayerController)
