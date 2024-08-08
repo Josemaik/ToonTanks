@@ -26,7 +26,8 @@ public:
 	void HandleDestruction();
 
 	APlayerController* GetTankPlayerController() const { return TankPlayerControl; }
-
+	void SetSpawnPoint(FVector spawnpoint);
+	void Spawn();
 	bool bAlive = true;
 protected:
 	// Called when the game starts or when spawned
@@ -49,4 +50,6 @@ private:
 	void Turn(float Value);
 
 	APlayerController* TankPlayerControl;
+
+	FVector SpawnPoint;
 };

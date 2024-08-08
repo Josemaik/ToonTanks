@@ -46,7 +46,10 @@ void AToonTanksGameMode::HandleGameStart()
 	//initialize num towers on the level
 	TargetTowers = GetTargetTowersCount();
 
+	FVector PawnSpawnLocation = UGameplayStatics::GetPlayerPawn(this, 0)->GetActorLocation();
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
+	Tank->SetSpawnPoint(PawnSpawnLocation);
+
 	ToonTanksPlayerController = Cast<AToonTanksPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 	
 	StartGame();
@@ -76,4 +79,10 @@ int32 AToonTanksGameMode::GetTargetTowersCount()
 	TArray<AActor*> Towers;
 	UGameplayStatics::GetAllActorsOfClass(this, ATower::StaticClass(), Towers);
 	return Towers.Num();
+}
+
+void AToonTanksGameMode::SpawnTank()
+{
+	Tank->Spawn();
+	ToonTanksPlayerController->SetPlayerEnabledState(true);
 }

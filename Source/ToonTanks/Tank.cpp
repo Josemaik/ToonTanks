@@ -84,3 +84,15 @@ void ATank::Turn(float Value)
 	DeltaRotator.Yaw = Value * UGameplayStatics::GetWorldDeltaSeconds(this) * TurnRate;
 	AddActorLocalRotation(DeltaRotator, true);
 }
+
+void ATank::SetSpawnPoint(FVector spawnpoint)
+{
+	SpawnPoint = spawnpoint;
+}
+void ATank::Spawn()
+{
+	SetActorLocation(SpawnPoint);
+	SetActorHiddenInGame(false);
+	SetActorTickEnabled(true);
+	bAlive = true;
+}
