@@ -28,7 +28,15 @@ void ATank::SetupPlayerInputComponent(UInputComponent* PlayerInputComponent)
 
 	PlayerInputComponent->BindAction(TEXT("Fire"), IE_Pressed, this, &ATank::Fire);
 }
-
+void ATank::Fire()
+{
+	Super::Fire();
+	if (NumBullets != 0)
+	{
+		--NumBullets;
+	}
+	UE_LOG(LogTemp, Warning, TEXT("Bullets: %i"), NumBullets)
+}
 void ATank::Tick(float DeltaTime)
 {
 	Super::Tick(DeltaTime);
@@ -99,8 +107,15 @@ void ATank::Spawn()
 	{
 		healthcomponent->SetHealth(100);
 	}
+
+	NumBullets = 5;
+
 	SetActorLocation(SpawnPoint);
 	SetActorHiddenInGame(false);
 	SetActorTickEnabled(true);
 	bAlive = true;
+}
+void ATank::SetHealth(float life)
+{
+	healthcomponent->SetHealth(0);
 }

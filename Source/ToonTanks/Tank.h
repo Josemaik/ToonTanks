@@ -28,6 +28,11 @@ public:
 	void SetSpawnPoint(FVector spawnpoint);
 	void Spawn();
 	bool bAlive = true;
+
+	void SetHealth(float life);
+	void Upgrade();
+	UFUNCTION(BlueprintImplementableEvent, meta = (AllowPrivateAccess = "true"))
+	void Increase_TankXp();
 protected:
 	// Called when the game starts or when spawned
 	virtual void BeginPlay() override;
@@ -45,12 +50,19 @@ private:
 	UPROPERTY(EditAnywhere, BlueprintReadWrite, Category = "Movement", meta = (AllowPrivateAccess = "true"))
 	float TurnRate = 45.f;
 
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	int NumBullets = 5;
+
+	UPROPERTY(BlueprintReadWrite, meta = (AllowPrivateAccess = "true"))
+	int XPLevel = 0;
+
 	void Move(float Value);
 	void Turn(float Value);
+	void Fire();
 
 	APlayerController* TankPlayerControl;
 
-	class UHealthComponent* healthcomponent;
-
 	FVector SpawnPoint;
+
+	class UHealthComponent* healthcomponent;
 };

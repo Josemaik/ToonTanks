@@ -13,6 +13,7 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 	if (DeadActor == Tank)
 	{
 		UE_LOG(LogTemp, Warning, TEXT("Tanqueee muertoooooo"));
+		Tank->SetHealth(0.f);
 		Tank->HandleDestruction();
 		/*auto tankplayercontroller = Tank->GetTankPlayerController();*/
 		if (ToonTanksPlayerController)
@@ -29,6 +30,7 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 		UE_LOG(LogTemp, Warning, TEXT("Torretaaaaaaaa muertaaaaa"));
 		DestroyedTower->HandleDestruction();
 		--TargetTowers;
+		Tank->Increase_TankXp();
 		if (TargetTowers == 0)
 		{
 			GameOver(true);
