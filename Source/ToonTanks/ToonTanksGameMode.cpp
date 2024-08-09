@@ -6,6 +6,7 @@
 #include "Tank.h"
 #include "Tower.h"
 #include "ToonTanksPlayerController.h"
+#include "HUD_ToonTanks.h"
 
 void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 {
@@ -24,6 +25,7 @@ void AToonTanksGameMode::ActorDied(AActor* DeadActor)
 	}
 	else if (ATower* DestroyedTower = Cast<ATower>(DeadActor))
 	{
+		Show_Puntuation();
 		UE_LOG(LogTemp, Warning, TEXT("Torretaaaaaaaa muertaaaaa"));
 		DestroyedTower->HandleDestruction();
 		--TargetTowers;
@@ -49,8 +51,9 @@ void AToonTanksGameMode::HandleGameStart()
 	FVector PawnSpawnLocation = UGameplayStatics::GetPlayerPawn(this, 0)->GetActorLocation();
 	Tank = Cast<ATank>(UGameplayStatics::GetPlayerPawn(this, 0));
 	Tank->SetSpawnPoint(PawnSpawnLocation);
+	HUDToonTanks = Cast<AHUD_ToonTanks>(this->HUDClass.GetDefaultObject());
+	ToonTanksPlayerController = Cast<AToonTanksPlayerController>(UGameplayStatics::GetPlayerController(this, 0)); 
 
-	ToonTanksPlayerController = Cast<AToonTanksPlayerController>(UGameplayStatics::GetPlayerController(this, 0));
 	
 	StartGame();
 	

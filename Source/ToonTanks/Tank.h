@@ -5,7 +5,6 @@
 #include "CoreMinimal.h"
 #include "BasePawn.h"
 #include "Tank.generated.h"
-
 /**
  * 
  */
@@ -50,6 +49,8 @@ private:
 	void Turn(float Value);
 
 	APlayerController* TankPlayerControl;
+
+	class UHealthComponent* healthcomponent;
 
 	FVector SpawnPoint;
 };

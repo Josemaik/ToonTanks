@@ -16,6 +16,7 @@ public:
 	// Sets default values for this component's properties
 	UHealthComponent();
 
+	void SetHealth(float health) { Health = health; }
 protected:
 	// Called when the game starts
 	virtual void BeginPlay() override;
@@ -23,6 +24,7 @@ private:
 
 	UPROPERTY(EditAnywhere)
 	float MaxHealth = 100.f;
+	UPROPERTY(BlueprintReadOnly, meta = (AllowPrivateAccess = "true"))
 	float Health = 0.f;
 
 	UFUNCTION()

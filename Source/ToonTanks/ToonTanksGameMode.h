@@ -30,6 +30,9 @@ protected:
 	UFUNCTION(BlueprintCallable)
 	void SpawnTank();
 
+	UFUNCTION(BlueprintImplementableEvent)
+	void Show_Puntuation();
+
 private:
 	class ATank* Tank;
 	class AToonTanksPlayerController* ToonTanksPlayerController;
@@ -40,4 +43,6 @@ private:
 
 	int32 TargetTowers = 0;
 	int32 GetTargetTowersCount();
+
+	class AHUD_ToonTanks* HUDToonTanks;
 };

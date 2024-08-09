@@ -7,6 +7,7 @@
 #include "Components/InputComponent.h"
 #include "Kismet/GameplayStatics.h"
 #include "DrawDebugHelpers.h"
+#include "HealthComponent.h"
 
 ATank::ATank()
 {
@@ -66,6 +67,8 @@ void ATank::BeginPlay()
 	Super::BeginPlay();
 
 	TankPlayerControl = Cast<APlayerController>(GetController());
+
+	healthcomponent = FindComponentByClass<UHealthComponent>();
 }
 void ATank::Move(float Value)
 {
@@ -91,6 +94,11 @@ void ATank::SetSpawnPoint(FVector spawnpoint)
 }
 void ATank::Spawn()
 {
+	//restart health to 100
+	if (healthcomponent)
+	{
+		healthcomponent->SetHealth(100);
+	}
 	SetActorLocation(SpawnPoint);
 	SetActorHiddenInGame(false);
 	SetActorTickEnabled(true);
